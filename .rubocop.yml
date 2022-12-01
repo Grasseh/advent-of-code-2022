@@ -66,6 +66,8 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 Style/FormatStringToken:
   EnforcedStyle: template
+Style/IfUnlessModifier:
+  Enabled: false
 Style/MethodCallWithArgsParentheses:
   Enabled: true
   AllowedMethods:
@@ -81,4 +83,6 @@ Style/MethodCallWithArgsParentheses:
 Style/NumericLiterals:
   Enabled: false
 Style/RaiseArgs:
+  Enabled: false
+Style/SingleArgumentDig:
   Enabled: false
