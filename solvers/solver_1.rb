@@ -9,11 +9,10 @@ module Solvers
       calories = elves.map do |elf|
         elf.map(&:chomp).map(&:to_i).sum
       end
-
       calories.max
     end
 
-    def solve_b(input, _opts = {})
+    def solve_b(_input, _opts = {})
       -1
     end
   end
