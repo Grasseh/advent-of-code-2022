@@ -1,0 +1,82 @@
+require:
+  - rubocop-minitest
+  - rubocop-rake
+
+AllCops:
+  TargetRubyVersion: 3.1.2
+  NewCops: enable
+
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
+Layout/CaseIndentation:
+  EnforcedStyle: end
+  IndentOneStep: true
+Layout/DotPosition:
+  EnforcedStyle: leading
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: variable
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+Layout/FirstArgumentIndentation:
+  EnforcedStyle: consistent
+Layout/LineLength:
+  Max: 80
+  AllowURI: true
+Layout/MultilineOperationIndentation:
+  Enabled: false
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+Layout/ParameterAlignment:
+  EnforcedStyle: with_fixed_indentation
+Layout/SpaceBeforeBlockBraces:
+  EnforcedStyle: no_space
+
+
+Metrics/AbcSize:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Max: 80000
+Metrics/PerceivedComplexity:
+  Max: 80000
+Metrics/BlockLength:
+  Enabled: false
+Metrics/ClassLength:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Metrics/ModuleLength:
+  Enabled: false
+
+Security/Eval:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: nested
+Style/ClassCheck:
+  Enabled: false
+Style/DocumentDynamicEvalDefinition:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/EvalWithLocation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/FormatStringToken:
+  EnforcedStyle: template
+Style/MethodCallWithArgsParentheses:
+  Enabled: true
+  AllowedMethods:
+    - 'context'
+    - 'describe'
+    - 'expect'
+    - 'include'
+    - 'it'
+    - 'puts'
+    - 'to'
+    - 'require'
+    - 'require_relative'
+Style/RaiseArgs:
+  Enabled: false
