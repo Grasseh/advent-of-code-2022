@@ -34,5 +34,14 @@ module Tests
         @solver.solve_a(wrap_array_input(*example_a))
       )
     end
+
+    def test_problem_b
+      expected = 45000
+
+      assert_equal(
+        expected,
+        @solver.solve_b(wrap_array_input(*example_a))
+      )
+    end
   end
 end
