@@ -33,6 +33,9 @@ Layout/ParameterAlignment:
 Layout/SpaceBeforeBlockBraces:
   EnforcedStyle: no_space
 
+Lint/AmbiguousOperatorPrecedence:
+  Enabled: false
+
 
 Metrics/AbcSize:
   Enabled: false
