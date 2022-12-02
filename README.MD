@@ -1,6 +1,6 @@
 # Advent of Code 2022
 
-[![Actions Status](https://github.com/grasseh/adventofcode-2022/workflows/Ruby/badge.svg)](https://github.com/grasseh/adventofcode-2022/actions)
+[![Actions Status](https://github.com/grasseh/advent-of-code-2022/workflows/Ruby/badge.svg)](https://github.com/grasseh/advent-of-code-2022/actions)
 
 Contains my personal solutions to Advent of code problems.
 
