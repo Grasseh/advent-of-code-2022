@@ -4,22 +4,32 @@ require 'active_support/core_ext'
 module Solvers
   class Solver2
     def solve_a(input, _opts = {})
-      input.reduce(0) do |score, round|
-        opponent_choice = shapes_hash_with_decision.dig(round[0])
-        self_choice = shapes_hash_with_decision.dig(round[2])
-        result = ((self_choice.score % 3 - opponent_choice.score % 3) + 4) % 3
+      cache ||= {}
 
-        score + self_choice.score + result * 3
+      input.reduce(0) do |score, round|
+        cache[round] ||= begin
+          opponent_choice = shapes_hash_with_decision.dig(round[0])
+          self_choice = shapes_hash_with_decision.dig(round[2])
+          result = ((self_choice.score % 3 - opponent_choice.score % 3) + 4) % 3
+          self_choice.score + result * 3
+        end
+
+        score + cache[round]
       end
     end
 
     def solve_b(input, _opts = {})
-      input.reduce(0) do |score, round|
-        opponent_choice = shapes_hash.dig(round[0])
-        expected_result = result_hash.dig(round[2])
-        self_choice = decide_shape(opponent_choice, expected_result)
+      cache ||= {}
 
-        score + self_choice.score + expected_result * 3
+      input.reduce(0) do |score, round|
+        cache[round] ||= begin
+          opponent_choice = shapes_hash.dig(round[0])
+          expected_result = result_hash.dig(round[2])
+          self_choice = decide_shape(opponent_choice, expected_result)
+          self_choice.score + expected_result * 3
+        end
+
+        score + cache[round]
       end
     end
 
