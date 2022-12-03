@@ -85,6 +85,17 @@ Style/MethodCallWithArgsParentheses:
     - 'require_relative'
 Style/NumericLiterals:
   Enabled: false
+Style/PercentLiteralDelimiters:
+  Enabled: true
+  PreferredDelimiters:
+    default: '()'
+    '%i': '()'
+    '%I': '()'
+    '%r': '{}'
+    '%w': '()'
+    '%W': '()'
+    '%q': '{}'
+    '%Q': '{}'
 Style/RaiseArgs:
   Enabled: false
 Style/SingleArgumentDig:
