@@ -19,8 +19,17 @@ module Solvers
       duplicates.sum
     end
 
-    def solve_b(_input, _opts = {})
-      -1
+    def solve_b(input, _opts = {})
+      badges_priorities = input.each_slice(3).map do |bag1, bag2, bag3|
+        duplicate = bag1
+          .chars
+          .intersection(bag2.chars)
+          .intersection(bag3.chars)
+
+        priority(duplicate.first)
+      end
+
+      badges_priorities.sum
     end
 
     def priority(letter)
