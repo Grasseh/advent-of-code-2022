@@ -31,7 +31,7 @@ module Tests
     end
 
     def test_problem_b
-      expected = -1
+      expected = 'MCD'
 
       assert_equal(
         expected,

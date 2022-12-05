@@ -8,15 +8,24 @@ module Solvers
       input_crates, input_operations = input.split("\n")
       crates = parse_crates(input_crates)
       operations = parse_operations(input_operations)
+
       operations.each do |operation|
-        execute_operation!(crates, operation)
+        execute_stack_operation!(crates, operation)
       end
 
       crates.values.map(&:last).join
     end
 
-    def solve_b(_input, _opts = {})
-      -1
+    def solve_b(input, _opts = {})
+      input_crates, input_operations = input.split("\n")
+      crates = parse_crates(input_crates)
+      operations = parse_operations(input_operations)
+
+      operations.each do |operation|
+        execute_group_operation!(crates, operation)
+      end
+
+      crates.values.map(&:last).join
     end
 
     def parse_crates(input)
@@ -51,13 +60,20 @@ module Solvers
       end
     end
 
-    def execute_operation!(crates, operation)
+    def execute_stack_operation!(crates, operation)
       stack_from = crates.dig(operation.dig(:from))
       stack_to = crates.dig(operation.dig(:to))
 
       operation.dig(:move_count).times do
         stack_to.push(stack_from.pop)
       end
+    end
+
+    def execute_group_operation!(crates, operation)
+      stack_from = crates.dig(operation.dig(:from))
+      stack_to = crates.dig(operation.dig(:to))
+
+      stack_to.push(stack_from.pop(operation.dig(:move_count))).flatten!
     end
   end
 end
