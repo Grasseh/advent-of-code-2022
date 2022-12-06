@@ -24,12 +24,19 @@ module Tests
     end
 
     def test_problem_b
-      expected = -1
-
-      assert_equal(
-        expected,
-        @solver.solve_a(wrap_line_input('mjqjpqmgbljsphdztnvjfqwrcgsmlb'))
-      )
+      [
+        [19, 'mjqjpqmgbljsphdztnvjfqwrcgsmlb'],
+        [23, 'bvwbjplbgvbhsrlpgdmjqwftvncz'],
+        [23, 'nppdvjthqldpwncqszvftbrmjlhg'],
+        [29, 'nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg'],
+        [26, 'zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw']
+      ].each do |expected, line|
+        assert_equal(
+          expected,
+          @solver.solve_b(wrap_line_input(line)),
+          "Expected #{expected} for #{line}"
+        )
+      end
     end
   end
 end
