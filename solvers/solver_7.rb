@@ -4,16 +4,26 @@ require 'pry'
 
 module Solvers
   class Solver7
-    def solve_a(input, _opts = {})
-      @smol_size_sum = 0
+    TOTAL_SPACE = 70000000
+    NEEDED_SPACE = 30000000
 
+    def initialize
+      @smol_size_sum = 0
+      @directories = {}
+    end
+
+    def solve_a(input, _opts = {})
       tree = build_tree(input)
       build_directory_sizes(tree)
       @smol_size_sum
     end
 
-    def solve_b(_input, _opts = {})
-      -1
+    def solve_b(input, _opts = {})
+      tree = build_tree(input)
+      build_directory_sizes(tree)
+      unused_space = TOTAL_SPACE - tree.size
+      need_to_free = NEEDED_SPACE - unused_space
+      @directories.keys.sort.bsearch { |x| x >= need_to_free }
     end
 
     def build_tree(input)
@@ -32,7 +42,9 @@ module Solvers
       tree_root
     end
 
-    def hook(_node_name, node_sum)
+    def hook(node_name, node_sum)
+      @directories[node_sum] = node_name
+
       return if node_sum > 100000
 
       @smol_size_sum += node_sum
