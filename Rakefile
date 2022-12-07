@@ -31,8 +31,8 @@ task :benchmark do
   Benchmark.bm(15) do |x|
     Dir
       .glob(File.join('.', 'inputs', '*'))
-      .select{ |file| File.file?(file) }
-      .map{ |file| File.basename(file, '.*') }
+      .select { |file| File.file?(file) }
+      .map { |file| File.basename(file, '.*') }
       .each do |number|
         require_relative "solvers/solver_#{number}.rb"
         solver = eval("Solvers::Solver#{number}").new

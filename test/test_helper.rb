@@ -5,5 +5,5 @@ def wrap_line_input(input)
 end
 
 def wrap_array_input(*inputs)
-  inputs.map{ |input| "#{input}\n" }
+  inputs.map { |input| "#{input}\n" }
 end
