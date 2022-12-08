@@ -25,8 +25,31 @@ module Solvers
       visible.count
     end
 
-    def solve_b(_input, _opts = {})
-      -1
+    def solve_b(input, _opts = {})
+      grid = parse_input(input)
+      height = grid.count
+      width = grid.first.count
+      best_score = 0
+      # Edges all have a scenic score of 0. Anything not on the edge has a
+      # scenic score. Note that the max score a 1 can have is 1, so we'll skip
+      # those too.
+
+      (1..(width - 2)).each do |x|
+        (1..(height - 2)).each do |y|
+          tree_height = grid[y][x]
+          next if tree_height == 1
+
+          north_score = calculate_scenic_score(x, y, 0, -1, grid, width, height)
+          south_score = calculate_scenic_score(x, y, 0, 1, grid, width, height)
+          east_score = calculate_scenic_score(x, y, 1, 0, grid, width, height)
+          west_score = calculate_scenic_score(x, y, -1, 0, grid, width, height)
+
+          scenic_score = north_score * south_score * east_score * west_score
+          best_score = [scenic_score, best_score].max
+        end
+      end
+
+      best_score
     end
 
     def parse_input(input)
@@ -65,6 +88,27 @@ module Solvers
       end
 
       visible
+    end
+
+    # rubocop:disable Layout/LineLength
+    def calculate_scenic_score(start_x, start_y, x_step, y_step, grid, width, height)
+      # rubocop:enable Layout/LineLength
+      tree_height = grid[start_y][start_x]
+      scenic_score = 0
+      x = start_x
+      y = start_y
+
+      loop do
+        x += x_step
+        y += y_step
+
+        break if x >= width || x.negative? || y >= height || y.negative?
+
+        scenic_score += 1
+        break if grid[y][x] >= tree_height
+      end
+
+      scenic_score
     end
   end
 end
