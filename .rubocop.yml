@@ -10,7 +10,7 @@ Layout/ArgumentAlignment:
   EnforcedStyle: with_fixed_indentation
 Layout/CaseIndentation:
   EnforcedStyle: end
-  IndentOneStep: true
+  IndentOneStep: false
 Layout/DotPosition:
   EnforcedStyle: leading
 Layout/EndAlignment:
