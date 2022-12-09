@@ -20,6 +20,19 @@ module Tests
       ]
     end
 
+    def example_b
+      [
+        'R 5',
+        'U 8',
+        'L 8',
+        'D 3',
+        'R 17',
+        'D 10',
+        'L 25',
+        'U 20'
+      ]
+    end
+
     def test_problem_a
       expected = 13
 
@@ -30,11 +43,16 @@ module Tests
     end
 
     def test_problem_b
-      expected = -1
+      assert_equal(
+        1,
+        @solver.solve_b(wrap_array_input(*example_a))
+      )
+
+      expected = 36
 
       assert_equal(
         expected,
-        @solver.solve_b(wrap_array_input(*example_a))
+        @solver.solve_b(wrap_array_input(*example_b))
       )
     end
   end
