@@ -48,7 +48,7 @@ module Tests
 
     def test_problem_b
       assert_equal(
-        -1,
+        2713310158,
         @solver.solve_b(wrap_array_input(*example_a))
       )
     end
