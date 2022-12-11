@@ -2,7 +2,7 @@ require_relative '../solvers/solver_10'
 require_relative 'test_helper'
 
 module Tests
-  class Solver9Test < Minitest::Test
+  class Solver10Test < Minitest::Test
     def setup
       @solver = Solvers::Solver10.new
     end
