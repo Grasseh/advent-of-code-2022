@@ -18,6 +18,7 @@ module Solvers
       grid = input
       goal = get_coord('E', grid)
       grid = grid.map(&:chomp).map(&:chars)
+
       input.map.with_index do |_row, i|
         start = [0, i]
         a_star(grid, start, goal)
