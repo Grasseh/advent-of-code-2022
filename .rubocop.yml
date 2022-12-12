@@ -87,6 +87,8 @@ Style/MethodCallWithArgsParentheses:
     - 'require_relative'
 Style/NumericLiterals:
   Enabled: false
+Style/ParenthesesAroundCondition:
+  Enabled: false
 Style/PercentLiteralDelimiters:
   Enabled: true
   PreferredDelimiters:
