@@ -44,7 +44,7 @@ module Tests
 
     def test_problem_b
       assert_equal(
-        -1,
+        140,
         @solver.solve_b(wrap_array_input(*example_a))
       )
     end

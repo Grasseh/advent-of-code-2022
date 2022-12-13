@@ -19,8 +19,18 @@ module Solvers
       sum
     end
 
-    def solve_b(_input, _opts = {})
-      -1
+    def solve_b(input, _opts = {})
+      rows = input
+        .map(&:chomp)
+        .reject(&:empty?)
+        .map { |row| JSON.parse(row) }
+
+      rows << JSON.parse('[[2]]')
+      rows << JSON.parse('[[6]]')
+
+      rows = rows.sort { |a, b| compare(a, b) }
+
+      (rows.index([[2]]) + 1) * (rows.index([[6]]) + 1)
     end
 
     def compare(left, right)
