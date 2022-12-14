@@ -41,11 +41,9 @@ module Solvers
         print_map(grid)
       end
 
-      sand_count = drop_sand_until(grid, opts) do |_|
+      drop_sand_until(grid, opts) do |_|
         grid['500-0'] == 'o'
       end
-
-      sand_count
     end
 
     def drop_sand_until(grid, opts, &block)
