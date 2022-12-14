@@ -21,6 +21,34 @@ module Solvers
         print_map(grid)
       end
 
+      sand_count = drop_sand_until(grid, opts) do |current_y|
+        current_y > @max_y
+      end
+
+      sand_count - 1
+    end
+
+    def solve_b(input, opts = {})
+      grid = build_grid(input)
+
+      ((@min_x - 500)..(@max_x + 500)).each do |x|
+        grid["#{x}-#{@max_y + 2}"] = '#'
+      end
+
+      if opts.dig(:print)
+        Curses.init_screen
+        Curses.crmode
+        print_map(grid)
+      end
+
+      sand_count = drop_sand_until(grid, opts) do |_|
+        grid['500-0'] == 'o'
+      end
+
+      sand_count
+    end
+
+    def drop_sand_until(grid, opts, &block)
       sand_spawn = [500, 0]
       sand_count = 0
 
@@ -30,7 +58,7 @@ module Solvers
 
         current_x = current_grain.first
         current_y = current_grain.last
-        void = false
+        big_break = false
 
         loop do
           # find new position
@@ -44,24 +72,19 @@ module Solvers
             current_x += 1
           else
             grid["#{current_x}-#{current_y}"] = 'o'
+            big_break = block.call(current_y)
             break
           end
 
-          if current_y > @max_y
-            void = true
-            break
-          end
+          big_break = block.call(current_y)
+          break if big_break
         end
 
         print_map(grid) if opts.dig(:print)
-        break if void
+        break if big_break
       end
 
-      sand_count - 1
-    end
-
-    def solve_b(_input, _opts = {})
-      -1
+      sand_count
     end
 
     def build_grid(input)
@@ -114,7 +137,6 @@ module Solvers
         Curses.addstr(line)
       end
 
-      Curses.getch
       Curses.refresh
     end
   end
