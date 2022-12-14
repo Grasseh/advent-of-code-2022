@@ -20,8 +20,8 @@ task :run do
 
   input = File.open("inputs/#{number}.txt").readlines
 
-  puts solver.solve_a(input)
-  puts solver.solve_b(input)
+  puts solver.solve_a(input, print: false)
+  puts solver.solve_b(input, print: false)
 end
 
 desc 'Run Benchmarks'
